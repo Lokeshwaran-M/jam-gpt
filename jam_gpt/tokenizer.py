@@ -29,5 +29,13 @@ class Tokenizer:
     def decode(self,l:list[int])->str:
         # decoder: take a list of integers, output a string
         return ''.join([self.itos[i] for i in l])
+    
+
+
+
+
+
+
+
 
 
