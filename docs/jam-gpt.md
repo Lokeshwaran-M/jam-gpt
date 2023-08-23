@@ -6,9 +6,9 @@ documentation for using jam-gpt library
 # 1 collecting data
 
 ```python
-from jam_gpt import data
+from jam_gpt import Data
 
-text_data=data.get("path-to-textfile")
+data=Data.get("path-to-textfile")
 ```
 just to get data from a text data file and return as one large single string for furthere pre processing 
 
@@ -18,7 +18,8 @@ just to get data from a text data file and return as one large single string for
 from jam_gpt import Tokenizer
 
 tok = Tokenizer()
-tok.get_encoding(text_data)
+tok.set_encoding("model-name",data)
+tok.get_encoding("model-name")
 
 enc = tok.encode("test sample $^&~~data")
 # [81, 66, 80, 81, 1, 80, 62, 74, 77, 73, 66, 1, 4, 60, 6, 90, 90, 65, 62, 81, 62]
