@@ -3,7 +3,25 @@
 
 documentation for using jam-gpt library
 
-# 1 collecting data
+## 0 Setup :
+
+### Installization 
+
+To add your modification and install in your local site-packages directory
+
+```bash
+# clone in your project directory
+git clone https://github.com/Lokeshwaran-M/jam-gpt.git
+cd jam-gpt
+
+# after modification run setup.py 
+python setup.py sdist bdist_wheel
+
+# run pip to move inside your local site-packages directory
+pip install .
+```
+
+## 1 Collecting Data :
 
 ```python
 from jam_gpt import Data
@@ -12,7 +30,7 @@ data=Data.get("path-to-textfile")
 ```
 just to get data from a text data file and return as one large single string for furthere pre processing 
 
-# 2 Tokenization
+## 2 Tokenization :
 
 ```python
 from jam_gpt import Tokenizer
