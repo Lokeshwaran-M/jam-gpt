@@ -1,6 +1,6 @@
 # Jam-gpt
 
-A reimplementation of large language model (LLM) architectures designed for research and development processes. Its purpose is to create a simple and fast framework for training and fine-tuning medium-sized Generative Pretrained Transformers (GPT)
+An Experimental reimplementation of large language model (LLM) architectures designed for research and development processes. Its purpose is to create a simple and fast framework for training and fine-tuning medium-sized Generative Pretrained Transformers (GPT)
 
 ## Instalation :
 
