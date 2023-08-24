@@ -3,7 +3,7 @@
 
 documentation for using jam-gpt library
 
-## 0 Setup :
+## 1 Setup :
 
 ### Installization 
 
@@ -21,7 +21,7 @@ python setup.py sdist bdist_wheel
 pip install .
 ```
 
-## 1 Collecting Data :
+## 2 Collecting Data :
 
 ```python
 from jam_gpt import Data
@@ -30,7 +30,7 @@ data=Data.get("path-to-textfile")
 ```
 just to get data from a text data file and return as one large single string for furthere pre processing 
 
-## 2 Tokenization :
+## 3 Tokenization :
 
 ```python
 from jam_gpt import Tokenizer

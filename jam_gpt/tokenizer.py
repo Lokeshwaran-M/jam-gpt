@@ -66,3 +66,19 @@ class Tokenizer:
 
 
 
+#  testing Data and Tokenizer calsses
+
+from jam_gpt import Data
+
+tok = Tokenizer()
+
+def test(path):
+
+    text = Data.get(path)
+    tok.set_encoding("love",text)
+    tok.get_encoding("love")
+    enc = tok.encode("test sample $^&~~data")
+    print(enc)
+    dec = tok.decode(enc)
+    print(dec)
+
