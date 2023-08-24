@@ -9,9 +9,6 @@ from jam_gpt import Config
 from jam_gpt import LM
 
 
-tok = Tokenizer()
-
-
 class Model:
     def __init__(self):
 
