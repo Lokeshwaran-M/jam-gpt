@@ -24,3 +24,8 @@ pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
 4 [ configurator]()  
 5 [ Language Model (LM)]()  
 6 [ Model generator]()
+
+
+## credits :
+
+kudos to [Andrej karpathy](https://github.com/karpathy) for his lectures on deep learning 
