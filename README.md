@@ -1,12 +1,12 @@
 # Jam-gpt
 
-An Experimental Reimplementation of large language model (LLM) architectures designed for research and development processes. Its purpose is to create a simple and fast framework for training and fine-tuning medium-sized Generative Pretrained Transformers (GPT)
+An Experimental Reimplementation of large language model (LLM) architectures and desig for research and development processe. Its purpose is to create a simple and fast framework for training and fine-tuning medium-sized Generative Pretrained Transformers (GPT)
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/80915494/263127835-0509942a-0528-4471-96fa-8eda3d4f159c.jpeg" width="50%" height="50%" >
 </p>
 
-## Instalation :
+## Installation :
 
 use pip and install it in your local site-packages directory
 
