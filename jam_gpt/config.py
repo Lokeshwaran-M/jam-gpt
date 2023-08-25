@@ -37,6 +37,7 @@ class Config:
         instance.vocab_size, instance.batch_size, instance.block_size, instance.max_iters, instance.eval_interval, instance.learning_rate, instance.device, instance.eval_iters, instance.n_embd, instance.n_head, instance.n_layer, instance.dropout = args
 
 
+
 def test():
     x = Config.pass_args()
     print(x)

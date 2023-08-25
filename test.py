@@ -16,34 +16,33 @@ def test(path):
     data = Data.get(path)
 
     # tokanization
-    tok.set_encoding("love", data)
-    tok.get_encoding("love")
+    tok.set_encoding("test", data)
+    tok.get_encoding("test")
 
     # setting parameters
     args = Config.pass_args()
     args[0] = tok.n_vocab
+    print(tok.n_vocab)
 
-    # model generation
-    gen = Model()
+    # model genration
+    test_model = Model()
+    lm = LM()
 
-    gen.set_parameters(args)
-    LM.set_parameters(args)
-    gen.set_model(LM.BigramLanguageModel)
+    test_model.set_parameters(args)
+    lm.set_parameters(args)
+    
+    m = test_model.set_model(lm.BigramLanguageModel())
 
-    gen.set_data(Data.train_test_split(tok.encode(data)))
+    test_model.set_data(Data.train_test_split(tok.encode(data)))
 
-    m = gen.model.to(gen.device)
+    test_model.optimize()
 
-    gen.optimize()
+    test_model.train()
 
-    gen.train()
-
-   # generate from the model
-    context = torch.zeros((1, 1), dtype=torch.long, device=gen.device)
-
-    print(tok.decode(m.generate(context, max_new_tokens=500)[0].tolist()))
+    print(tok.decode(test_model.generate()))
 
 
-path = "./data-set/love/texts/The-Art-of-Loving-Erich-Fromm_text.txt"
+path = "data.txt"
 test(path)
+
 

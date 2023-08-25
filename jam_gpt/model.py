@@ -1,19 +1,13 @@
 
 import torch
-import torch.nn as nn
-from torch.nn import functional as F
 
-from jam_gpt import Data
-from jam_gpt import Tokenizer
-from jam_gpt import Config
-from jam_gpt import LM
+from .config import Config
 
+
+torch.manual_seed(1337)
 
 class Model:
     def __init__(self):
-
-        torch.manual_seed(1337)
-
         self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout = Config.pass_args()
 
         self.model = None
@@ -23,10 +17,14 @@ class Model:
 
     def set_model(self, model):
         self.model = model
+        self.m = self.model.to(self.device)
+        # print the number of parameters in the model
+        print(sum(p.numel() for p in self.m.parameters())/1e6, 'M parameters')
+        return self.m
 
-    def set_data(self, train_data, test_data):
-        self.train_data = train_data
-        self.test_data = test_data
+    def set_data(self, data):
+        self.train_data = data[0]
+        self.test_data = data[1]
 
     def set_parameters(self, args):
         self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout = args
@@ -79,39 +77,9 @@ class Model:
             loss.backward()
             self.optimizer.step()
 
+    def generate(self,max_new_tokens=500):
+        # generate from the model
+        context = torch.zeros((1, 1), dtype=torch.long, device=self.device)
 
-tok = Tokenizer()
+        return self.m.generate(context, max_new_tokens)[0].tolist()
 
-
-def test(path):
-
-    # data collection
-    data = Data.get(path)
-
-    # tokanization
-    tok.set_encoding("love", data)
-    tok.get_encoding("love")
-
-    # setting parameters
-    args = Config.pass_args()
-    args[0] = tok.n_vocab
-
-    # model generation
-    gen = Model()
-
-    gen.set_parameters(args)
-    LM.set_parameters(args)
-    gen.set_model(LM.BigramLanguageModel)
-
-    gen.set_data(Data.train_test_split(tok.encode(data)))
-
-    m = gen.model.to(gen.device)
-
-    gen.optimize()
-
-    gen.train()
-
-   # generate from the model
-    context = torch.zeros((1, 1), dtype=torch.long, device=gen.device)
-
-    print(tok.decode(m.generate(context, max_new_tokens=500)[0].tolist()))

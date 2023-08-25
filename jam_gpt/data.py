@@ -1,5 +1,5 @@
 import torch
-from jam_gpt import Tokenizer
+
 
 
 class Data:
@@ -34,7 +34,7 @@ class Data:
         train_data = tensor_data[:n]
         test_data = tensor_data[n:]
 
-        return train_data, test_data
+        return [train_data, test_data]
 
 
 def test(path):
