@@ -13,6 +13,54 @@ use pip and install it in your local site-packages directory
 ```bash
 pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
 ```
+## Example :
+
+```python
+
+from jam_gpt import Data
+from jam_gpt import Tokenizer
+from jam_gpt import Config
+from jam_gpt import LM
+from jam_gpt import Model
+
+tok = Tokenizer()
+
+
+def gen_model(model_name,path):
+
+    # data collection
+    data = Data.get(path)
+
+    # tokanization
+    tok.set_encoding(model_name, data)
+    tok.get_encoding(model_name)
+
+    # setting parameters
+    args = Config.pass_args()
+    args[0] = tok.n_vocab
+    print(tok.n_vocab)
+
+    # model genration
+    test_model = Model()
+    lm = LM()
+
+    test_model.set_parameters(args)
+    lm.set_parameters(args)
+
+    m = test_model.set_model(lm.BigramLanguageModel())
+
+    test_model.set_data(Data.train_test_split(tok.encode(data)))
+
+    test_model.optimize()
+
+    test_model.train()
+
+    print(tok.decode(test_model.generate()))
+
+
+gen_model("test-m","data.txt")
+
+```
 
 ## DOCS :
 

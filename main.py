@@ -1,10 +1,6 @@
 
 
-from jam_gpt import Data
-from jam_gpt import Tokenizer
-from jam_gpt import Config
-from jam_gpt import LM
-from jam_gpt import Model
+from jam_gpt import Data, Tokenizer, Config, LM, Model
 
 tok = Tokenizer()
 
@@ -15,8 +11,8 @@ def gen_model(path):
     data = Data.get(path)
 
     # tokanization
-    tok.set_encoding("test", data)
-    tok.get_encoding("test")
+    tok.set_encoding("love", data)
+    tok.get_encoding("love")
 
     # setting parameters
     args = Config.pass_args()
@@ -29,7 +25,7 @@ def gen_model(path):
 
     test_model.set_parameters(args)
     lm.set_parameters(args)
-    
+
     m = test_model.set_model(lm.BigramLanguageModel())
 
     test_model.set_data(Data.train_test_split(tok.encode(data)))

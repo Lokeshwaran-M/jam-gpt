@@ -29,7 +29,7 @@ def test(path):
 
     test_model.set_parameters(args)
     lm.set_parameters(args)
-    
+
     m = test_model.set_model(lm.BigramLanguageModel())
 
     test_model.set_data(Data.train_test_split(tok.encode(data)))
@@ -43,5 +43,3 @@ def test(path):
 
 path = "data.txt"
 test(path)
-
-
