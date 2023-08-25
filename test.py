@@ -1,5 +1,4 @@
 
-import torch
 
 from jam_gpt import Data
 from jam_gpt import Tokenizer
