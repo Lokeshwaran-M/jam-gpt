@@ -77,9 +77,10 @@ class Model:
             loss.backward()
             self.optimizer.step()
 
-    def generate(self,max_new_tokens=500):
+    def generate(self,prompt,max_new_tokens=500):
         # generate from the model
-        context = torch.zeros((1, 1), dtype=torch.long, device=self.device)
+        # context = torch.zeros((1, 1), dtype=torch.long, device=self.device)
+        tensor_prompt  =(torch.tensor(prompt, dtype=torch.long , device = self.device)[None, ...])
 
-        return self.m.generate(context, max_new_tokens)[0].tolist()
+        return self.m.generate(tensor_prompt, max_new_tokens)[0].tolist()
 

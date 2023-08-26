@@ -15,8 +15,8 @@ def test(path):
     data = Data.get(path)
 
     # tokanization
-    tok.set_encoding("test", data)
-    tok.get_encoding("test")
+    tok.set_encoding("test-m", data)
+    tok.get_encoding("test-m")
 
     # setting parameters
     args = Config.pass_args()
@@ -38,7 +38,8 @@ def test(path):
 
     test_model.train()
 
-    print(tok.decode(test_model.generate()))
+    pmt = tok.encode("i love you")
+    print(tok.decode(test_model.generate(pmt)))
 
 
 path = "data.txt"

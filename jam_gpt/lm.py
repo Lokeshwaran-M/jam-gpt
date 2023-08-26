@@ -189,7 +189,8 @@ class LM:
             # idx is (B, T) array of indices in the current context
             for _ in range(max_new_tokens):
                 # crop idx to the last block_size tokens
-                idx_cond = idx[:, -block_size:]
+                # idx_cond = idx[:, -block_size:]
+                idx_cond = idx if idx.size(1) <= block_size else idx[:, -block_size:]
                 # get the predictions
                 logits, loss = self(idx_cond)
                 # focus only on the last time step
@@ -201,3 +202,7 @@ class LM:
                 # append sampled index to the running sequence
                 idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
             return idx
+    
+        @classmethod
+        def from_pretrained(cls, model_type, override_args=None):
+            pass
