@@ -17,11 +17,7 @@ pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
 
 ```python
 
-from jam_gpt import Data
-from jam_gpt import Tokenizer
-from jam_gpt import Config
-from jam_gpt import LM
-from jam_gpt import Model
+from jam_gpt import Data, Tokenizer, Config, LM, Model
 
 tok = Tokenizer()
 
@@ -59,14 +55,6 @@ def gen_model(model_name,path):
 
 
 gen_model("test-m","data.txt")
-
-    # Save the trained model
-    model_path=f"./models/{s_path}"
-    if not os.path.exists(model_path):
-        os.makedirs(model_path)
-    model.save_pretrained(model_path)
-    tokenizer.save_pretrained(model_path)
-
 
 ```
 

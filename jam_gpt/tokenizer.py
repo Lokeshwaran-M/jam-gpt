@@ -31,7 +31,13 @@ class Tokenizer:
 
     def encode(self, s: str) -> list[int]:
         # encoder: take a string char , output a list of integers
-        return [self.stoi[c] for c in s]
+        enc_list = []
+        for c in s:
+            if c not in self.stoi:
+                self.stoi[c] = max(self.stoi.values())+1
+                self.n_vocab += 1
+            enc_list.append(self.stoi[c])
+        return enc_list
 
     def decode(self, l: list[int]) -> str:
         # decoder: take a list of integers, output a string

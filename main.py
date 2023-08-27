@@ -37,7 +37,3 @@ def gen_model(path):
     print(tok.decode(test_model.generate()))
 
 
-path = "./data-set/love/texts/The-Art-of-Loving-Erich-Fromm_text.txt"
-
-if __name__ == "__main__":
-    gen_model(path)

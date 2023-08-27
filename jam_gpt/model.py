@@ -1,10 +1,13 @@
 
+import os
+import pickle
 import torch
 
 from .config import Config
 
 
 torch.manual_seed(1337)
+
 
 class Model:
     def __init__(self):
@@ -14,6 +17,9 @@ class Model:
 
         self.train_data = None
         self.test_data = None
+
+    def set_parameters(self, args):
+        self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout = args
 
     def set_model(self, model):
         self.model = model
@@ -25,9 +31,6 @@ class Model:
     def set_data(self, data):
         self.train_data = data[0]
         self.test_data = data[1]
-
-    def set_parameters(self, args):
-        self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout = args
 
     def get_batch(self, split):
         # generate small batch of data of input -> x and targets -> y
@@ -77,10 +80,32 @@ class Model:
             loss.backward()
             self.optimizer.step()
 
-    def generate(self,prompt,max_new_tokens=500):
+    def generate(self, prompt, max_new_tokens=500):
         # generate from the model
         # context = torch.zeros((1, 1), dtype=torch.long, device=self.device)
-        tensor_prompt  =(torch.tensor(prompt, dtype=torch.long , device = self.device)[None, ...])
+        tensor_prompt = (torch.tensor(
+            prompt, dtype=torch.long, device=self.device)[None, ...])
 
         return self.m.generate(tensor_prompt, max_new_tokens)[0].tolist()
 
+    def save_model(self, model_name, model_format="bin"):
+        if not os.path.exists(f"./{model_name}"):
+            os.makedirs(f"./{model_name}")
+        path = f"{model_name}/{model_name}.{model_format}"
+        if model_format == "bin" or model_format == "pt":
+            torch.save(self.model.state_dict(), path)
+        elif model_format == "pkl":
+            with open(path, 'wb') as f:
+                pickle.dump(self.model, f)
+        else:
+            print(f"given model format : {model_format} is not supported")
+
+    def load_model(self, model_name, model_format="bin"):
+        path = f"{model_name}/{model_name}.{model_format}"
+        if model_format == "bin" or model_format == "pt":
+            self.model.load_state_dict(torch.load(path))
+        elif model_format == "pkl":
+            with open(path, 'rb') as f:
+                self.model = pickle.load(f)
+        # self.model.eval()
+        # return self.model
