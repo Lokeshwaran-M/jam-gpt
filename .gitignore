@@ -1,0 +1,8 @@
+
+#  models
+t01-mdgptttok/
+md-test-01/
+
+# model
+*.bin
+
