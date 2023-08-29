@@ -1,8 +1,8 @@
 
 #  models
-t01-mdgptttok/
-md-test-01/
+md-t01-gptTok-bgLM/
+# md-test-01/
 
 # model
-*.bin
+# *.bin
 

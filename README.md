@@ -24,63 +24,43 @@ pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
 
 ## Usage :
 
-Refere [test.py](test.py) or [test-bgLM.ipynb](test-bgLM.ipynb) for understanding the library
+Refere [Docs](./docs/jam-gpt.md) or [test-bgLM.ipynb](test-bgLM.ipynb) and [test-gptLM.ipynb](test-gptLM.ipynb)  for code examples
 
 ```python
 
-from jam_gpt import Data, Tokenizer, Config, LM, Model
+from jam_gpt import Tokenizer, Config, LM, Model
+
+md_name = "md-name"
 
 tok = Tokenizer()
+tok.get_encoding(md_name)
 
-
-model_name = "test-m"
-path = "data.txt"
-
-# data collection
-data = Data.get(path)
-
-# tokanization
-tok.set_encoding(model_name, data)
-tok.get_encoding(model_name)
+# model initilization
+model = Model()
+lm = LM()
 
 # setting parameters
 args = Config.pass_args()
 args[0] = tok.n_vocab
-print(tok.n_vocab)
 
-# model genration
-test_model = Model()
-lm = LM()
-test_model.set_parameters(args)
+model.set_parameters(args)
 lm.set_parameters(args)
 
 # if needed GPT Language Model
-test_model.set_model(GPTLanguageModel())
-
-# prepare data for training ( train , test )
-test_model.set_data(Data.train_test_split(enc_data))
-
-# traning
-test_model.optimize()
-test_model.train()
-
-#Saving model 
-# default bin
-test_model.save_model(model_name)
+model.set_model(lm.GPTLanguageModel())
 
 # load model 
-test_model.load_model(model_name)
+model.load_model(md_name)
 
 # Generate data using Model
-
 pmt = tok.encode("user prompt")
-print(tok.decode(test_model.generate(pmt)))
+print(tok.decode(model.generate(pmt)))
 
 ```
 
-## DOCS :
+## Docs :
 
-[Jam-gpt docs](./docs/jam-gpt.md) will give you the useage and explanation of the jam-gpt library
+[Jam-gpt docs](./docs/jam-gpt.md) will give you the complete useage and explanation of the jam-gpt library
 
 1 [ setup](./docs/jam-gpt.md#1-setup)  
 2 [ Collecting data](./docs/jam-gpt.md#2-collecting-data)  
