@@ -7,6 +7,11 @@ torch.manual_seed(1337)
 
 
 class LM:
+    """
+    defines a language model using PyTorch 
+    based on the Transformer architecture attention Mechanism
+    """
+
     def __init__(self) -> None:
         pass
 
@@ -97,6 +102,10 @@ class LM:
     # super simple bigram model
 
     class BigramLanguageModel(nn.Module):
+        """
+        language model predicts next token 
+        based on previous tokens using a simple bigram approach
+        """
 
         def __init__(self):
             super().__init__()
@@ -149,6 +158,9 @@ class LM:
             return idx
 
     class GPTLanguageModel(nn.Module):
+        """
+        GPT-style approach where each token predicts the next token
+        """
 
         def __init__(self):
             super().__init__()

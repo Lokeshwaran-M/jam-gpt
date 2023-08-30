@@ -44,9 +44,9 @@ class Tokenizer:
         return ''.join([self.itos[str(i)] for i in l])
 
     @classmethod
-    def get_char_vocab(cls, path: str) -> list:
+    def get_char_vocab(cls, path: str):
         """
-        text data file -> string data -> list vocab (array)
+        json file -> dict -> dict,dict
         """
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -57,7 +57,7 @@ class Tokenizer:
     @classmethod
     def set_char_vocab(cls, path: str, data: str) -> None:
         """
-        string data -> vocab -> text data file (write list(array) into file)
+        string data -> vocab -> dict,dict -> dict -> json file
         """
         data_chars = sorted(list(set(data)))
         stoi = {ch: i for i, ch in enumerate(data_chars)}
@@ -67,14 +67,3 @@ class Tokenizer:
             json.dump(vocab, f)
             # print("writen data string : ",len(data_string))
 
-    def set_dicts(dict1, dict2, filename):
-        data = {'dict1': dict1, 'dict2': dict2}
-        with open(filename, 'w') as file:
-            json.dump(data, file)
-
-    def get_dicts(filename):
-        with open(filename, 'r') as file:
-            data = json.load(file)
-            dict1 = data['dict1']
-            dict2 = data['dict2']
-        return dict1, dict2
