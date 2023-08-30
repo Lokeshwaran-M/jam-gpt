@@ -1,7 +1,6 @@
 #  testing Data and Tokenizer calsses
 
-from ..data import Data
-from ..tokenizer import Tokenizer
+from jam_gpt import Data, Tokenizer, config
 
 tok = Tokenizer()
 
@@ -27,3 +26,14 @@ def t_tokenizer(path,text_input = "test sample data"):
 
 # td.t_tokenizer("data.txt")
 
+def t_config():
+    x = config.pass_args()
+    print(x)
+    x[0] = 96
+    config.set_args(x)
+    y = config.pass_args()
+    print(x)
+    print(y)
+
+    # [0, 16, 32, 5000, 100, 0.001, 'cuda', 200, 64, 4, 4, 0.0]
+    # [96, 16, 32, 5000, 100, 0.001, 'cuda', 200, 64, 4, 4, 0.0]

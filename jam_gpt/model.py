@@ -2,30 +2,38 @@
 import os
 import pickle
 import torch
-
-from .config import Config
+from . import config
 
 
 torch.manual_seed(1337)
 
 
 class Model:
+    """ class model to work on lm models """
+
     def __init__(self):
-        [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout ]= Config.pass_args()
+        [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate,
+            self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout] = config.pass_args()
 
         self.model = None
 
         self.train_data = None
         self.test_data = None
 
-    def set_parameters(self, args):
-        [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout ]= args
+    def set_parameters(self, args: list):
+        [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate,
+            self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout] = args
+
+    def get_parameters(self):
+        return [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout]
 
     def set_model(self, model):
         self.model = model
         self.m = self.model.to(self.device)
         # print the number of parameters in the model
-        print(sum(p.numel() for p in self.m.parameters())/1e6, 'M parameters')
+        print("vocab size : ", self.vocab_size)
+        print("parameters : ", sum(p.numel()
+              for p in self.m.parameters())/1e6, " M")
         return self.m
 
     def set_data(self, data):
@@ -89,6 +97,8 @@ class Model:
         return self.m.generate(tensor_prompt, max_new_tokens)[0].tolist()
 
     def save_model(self, model_name, model_format="bin"):
+
+        # to save model
         if not os.path.exists(f"./{model_name}"):
             os.makedirs(f"./{model_name}")
         path = f"{model_name}/{model_name}.{model_format}"
@@ -100,12 +110,23 @@ class Model:
         else:
             print(f"given model format : {model_format} is not supported")
 
+        # to save config info
+        config.set_args(self.get_parameters())
+        config.store_config(f"{model_name}/config.json")
+
     def load_model(self, model_name, model_format="bin"):
+        # to load model
         path = f"{model_name}/{model_name}.{model_format}"
         if model_format == "bin" or model_format == "pt":
             self.model.load_state_dict(torch.load(path))
         elif model_format == "pkl":
             with open(path, 'rb') as f:
                 self.model = pickle.load(f)
-        # self.model.eval()
+
+        # to load config info
+        config_data = config.retrieve_config(f"{model_name}/config.json")
+        self.set_parameters(config_data["config_args"])
+        config.set_args(config_data["config_args"])
+
+        self.model.eval()
         # return self.model

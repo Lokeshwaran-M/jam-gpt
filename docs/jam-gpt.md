@@ -38,7 +38,7 @@ from jam_gpt import Tokenizer
 
 tok = Tokenizer()
 
-model_name = "test-m"
+model_name = "md-test"
 # tokanization
 tok.set_encoding(model_name, data)
 tok.get_encoding(model_name)
@@ -58,26 +58,20 @@ A tokenizer is a tool that breaks down text into smaller units called tokens The
 ## 4 configuration :
 
 ```python
-from jam_gpt import Config
+from jam_gpt import config
 
-# setting parameters
-args = Config.pass_args()
-args[0] = vocab_size
-Config.set_args(x)
-up_args=Config.pass_args()
+# customizing parameter settings
+
+args = config.pass_args()
+config.vocab_size = 96
 
 print(args)
-print(up_args)
+print(config.pass_args())
 
 # out :
 # [0, 16, 32, 5000, 100, 0.001, 'cuda', 200, 64, 4, 4, 0.0]
 # [96, 16, 32, 5000, 100, 0.001, 'cuda', 200, 64, 4, 4, 0.0]
 
-config = Config()
-print(comfig.vocab_size)
-
-# out :
-# 0
 ```
 ## 5 Language Model ( LM , Model )  :
 
@@ -90,13 +84,10 @@ from jam_gpt import Model
 # model genration
 test_model = Model()
 
-test_model.set_parameters(args)
-lm.set_parameters(args)
-
 # if needed Bigram Language Model
-test_model.set_model(lm.BigramLanguageModel())
+test_model.set_model(lm.BigramLM())
 # elif needed GPT Language Model
-test_model.set_model(GPTLanguageModel())
+test_model.set_model(lm.GPTLM())
 ```
 ### Traning 
 ```python

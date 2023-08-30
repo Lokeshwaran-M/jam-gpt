@@ -1,9 +1,9 @@
 import torch
-from .config import Config
+from . import config
 
-config = Config()
 
 class Data:
+    """ just a data preprocessor """
     def __init__(self) -> None:
         pass
 
@@ -29,8 +29,9 @@ class Data:
     @classmethod
     def train_test_split(cls, data, split_percent: int = 90):
         # split the data into train ans test based on split percentage
-        
-        tensor_data = torch.tensor(data, dtype=torch.long , device = config.device)
+
+        tensor_data = torch.tensor(
+            data, dtype=torch.long, device=config.device)
         n = int((split_percent/100)*len(tensor_data))
         train_data = tensor_data[:n]
         test_data = tensor_data[n:]
@@ -39,12 +40,9 @@ class Data:
 
 
 def test(path):
-    Data.set(path,"ghsdubvujsjbnjsnjbnsjnbljnlbnls")
-    d= Data.get(path)
+    Data.set(path, "ghsdubvujsjbnjsnjbnsjnbljnlbnls")
+    d = Data.get(path)
     print(d)
-    Data.set_vocab(path,d)
-    l= Data.get_vocab(path)
+    Data.set_vocab(path, d)
+    l = Data.get_vocab(path)
     print(l)
-
-
-

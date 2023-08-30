@@ -28,27 +28,23 @@ Refere [Docs](./docs/jam-gpt.md) or [test-bgLM.ipynb](test-bgLM.ipynb) and [test
 
 ```python
 
-from jam_gpt import Tokenizer, Config, lm, Model
+from jam_gpt import Tokenizer, config, lm, Model
 
 md_name = "md-name"
 
 tok = Tokenizer()
 tok.get_encoding(md_name)
 
+# setting parameters
+config.vocab_size = tok.n_vocab
+
 # model initilization
 model = Model()
 
-# setting parameters
-args = Config.pass_args()
-args[0] = tok.n_vocab
+# setting GPT Language Model
+model.set_model(lm.GPTLM())
 
-model.set_parameters(args)
-lm.set_parameters(args)
-
-# if needed GPT Language Model
-model.set_model(lm.GPTLanguageModel())
-
-# load model 
+# load pretrined model 
 model.load_model(md_name)
 
 # Generate data using Model

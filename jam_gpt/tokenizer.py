@@ -66,4 +66,3 @@ class Tokenizer:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(vocab, f)
             # print("writen data string : ",len(data_string))
-

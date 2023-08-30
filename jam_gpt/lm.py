@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from .config import Config
+from . import config
 
 torch.manual_seed(1337)
 
@@ -21,7 +21,7 @@ based on the Transformer architecture attention Mechanism
  n_embd,
  n_head,
  n_layer,
- dropout] = Config.pass_args()
+ dropout] = config.pass_args()
 
 
 def set_parameters(args):
@@ -114,7 +114,7 @@ class Block(nn.Module):
 # super simple bigram model
 
 
-class BigramLanguageModel(nn.Module):
+class BigramLM(nn.Module):
     """
     language model predicts next token 
     based on previous tokens using a simple bigram approach
@@ -122,6 +122,8 @@ class BigramLanguageModel(nn.Module):
 
     def __init__(self):
         super().__init__()
+        # setting updated parameters
+        set_parameters(config.pass_args())
 
         # each token directly reads off the logits for the next token from a lookup table
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
@@ -171,13 +173,16 @@ class BigramLanguageModel(nn.Module):
         return idx
 
 
-class GPTLanguageModel(nn.Module):
+class GPTLM(nn.Module):
     """
     GPT-style approach where each token predicts the next token
     """
 
     def __init__(self):
         super().__init__()
+        # setting updated parameters
+        set_parameters(config.pass_args())
+
         # each token directly reads off the logits for the next token from a lookup table
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
         self.position_embedding_table = nn.Embedding(block_size, n_embd)
