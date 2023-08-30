@@ -28,7 +28,7 @@ Refere [Docs](./docs/jam-gpt.md) or [test-bgLM.ipynb](test-bgLM.ipynb) and [test
 
 ```python
 
-from jam_gpt import Tokenizer, Config, LM, Model
+from jam_gpt import Tokenizer, Config, lm, Model
 
 md_name = "md-name"
 
@@ -37,7 +37,6 @@ tok.get_encoding(md_name)
 
 # model initilization
 model = Model()
-lm = LM()
 
 # setting parameters
 args = Config.pass_args()

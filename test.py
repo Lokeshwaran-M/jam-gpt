@@ -1,7 +1,7 @@
 from jam_gpt import Data
 from jam_gpt import Tokenizer
 from jam_gpt import Config
-from jam_gpt import LM
+from jam_gpt import lm
 from jam_gpt import Model
 
 tok = Tokenizer()
@@ -23,7 +23,6 @@ print(tok.n_vocab)
 
 # model genration
 test_model = Model()
-lm = LM()
 
 test_model.set_parameters(args)
 lm.set_parameters(args)

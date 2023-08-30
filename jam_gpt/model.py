@@ -11,7 +11,7 @@ torch.manual_seed(1337)
 
 class Model:
     def __init__(self):
-        self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout = Config.pass_args()
+        [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout ]= Config.pass_args()
 
         self.model = None
 
@@ -19,7 +19,7 @@ class Model:
         self.test_data = None
 
     def set_parameters(self, args):
-        self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout = args
+        [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout ]= args
 
     def set_model(self, model):
         self.model = model

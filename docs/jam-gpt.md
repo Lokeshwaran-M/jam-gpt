@@ -84,12 +84,11 @@ print(comfig.vocab_size)
 ### Initilizing model
 
 ```python
-from jam_gpt import  LM
+from jam_gpt import  lm
 from jam_gpt import Model
 
 # model genration
 test_model = Model()
-lm = LM()
 
 test_model.set_parameters(args)
 lm.set_parameters(args)
