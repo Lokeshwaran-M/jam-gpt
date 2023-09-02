@@ -1,6 +1,6 @@
 # Jam-gpt
 
-An Experimental Reimplementation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures and design process and create a simple and fast framework for training and fine-tuning medium-sized [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) based on the paper ["Attention Is All You Need"](./docs/1706.03762.pdf)
+An Experimental Reimplementation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures and design process and create a simple and fast framework for training and fine-tuning medium-sized [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) based on the paper ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf)
 
 
 
@@ -28,7 +28,10 @@ Refere [Docs](./docs/jam-gpt.md) or [test-bgLM.ipynb](test-bgLM.ipynb) and [test
 
 ```python
 
-from jam_gpt import Tokenizer, config, lm, Model
+from jam_gpt.tokenizer import Tokenizer
+from jam_gpt import config
+from jam_gpt import lm
+from jam_gpt.model import Model
 
 md_name = "md-name"
 
