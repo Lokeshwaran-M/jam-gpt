@@ -2,17 +2,13 @@
 
 An Experimental Reimplementation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures and design process and create a simple and fast framework for training and fine-tuning medium-sized [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) based on the paper ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf)
 
-
-
 <a  href="https://github.com/Lokeshwaran-M/Jam-AI.git">
-<p align="center">
-<img src="https://user-images.githubusercontent.com/80915494/263127835-0509942a-0528-4471-96fa-8eda3d4f159c.jpeg" width="50%" height="50%" >
-<!-- <p align="center"><a  href="https://github.com/Lokeshwaran-M/Jam-AI.git">Jam-AI</a></p> -->
-
-</p>
+<div align="center" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+<img src="https://user-images.githubusercontent.com/80915494/265230650-6b3100d4-305e-414a-b7b5-cb2399fc197a.png" width="50%" height="50%" >
+</div>
 </a>
 
-Jam-gpt is also utilized in building Core Knowledge Model of [Jam-AI](https://github.com/Lokeshwaran-M/Jam-AI.git) an open source AGI system for Linux machines
+Jam-gpt is also utilized in building Core Knowledge Model of **[Jam-AI](https://github.com/Lokeshwaran-M/Jam-AI.git)** an open source AGI system for Linux machines
 
 ## Installation :
 
@@ -24,7 +20,7 @@ pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
 
 ## Usage :
 
-Refere [Docs](./docs/jam-gpt.md) or [test-bgLM.ipynb](test-bgLM.ipynb) and [test-gptLM.ipynb](test-gptLM.ipynb)  for code examples
+Refere [Docs](./docs/jam-gpt.md) or [test-bgLM.ipynb](test-bgLM.ipynb) and [test-gptLM.ipynb](test-gptLM.ipynb) for code examples
 
 ```python
 
@@ -47,7 +43,7 @@ model = Model()
 # setting GPT Language Model
 model.set_model(lm.GPTLM())
 
-# load pretrined model 
+# load pretrined model
 model.load_model(md_name)
 
 # Generate data using Model
@@ -68,18 +64,17 @@ print(tok.decode(model.generate(pmt)))
 6 [ Model Fine Tuning](./docs/jam-gpt.md#6-model-fine-tuning)
 
 ## Contribution :
+
 for contribution guidelines and terms and condition to contribute refere [jam-contribution](https://github.com/Lokeshwaran-M/jam-contribution.git) by rasing the PR you are accepting the terms and condition
 
-Any form of contribution is accepted here 
+Any form of contribution is accepted here
 
-    Submitting :    
-        Issues  
-        pull requests   
-        feature requests    
-        bug reports  
-        documentation   
-
-
+    Submitting :
+        Issues
+        pull requests
+        feature requests
+        bug reports
+        documentation
 
 ## credits :
 
