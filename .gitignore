@@ -5,3 +5,6 @@
 # model
 # *.bin
 
+__pycache__/
+*.pyc
+

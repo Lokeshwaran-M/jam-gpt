@@ -7,6 +7,12 @@ documentation for using jam-gpt library
 
 ### Installization 
 
+install it in your local site-packages directory
+
+```bash
+pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
+```
+### Modified installization
 To add your modification and install in your local site-packages directory
 
 ```bash
@@ -14,11 +20,11 @@ To add your modification and install in your local site-packages directory
 git clone https://github.com/Lokeshwaran-M/jam-gpt.git
 cd jam-gpt
 
-# after modification run setup.py 
-python setup.py sdist bdist_wheel
-
 # run pip to move inside your local site-packages directory
 pip install .
+
+#  to do modification editable mode
+pip install -e .
 ```
 
 ## 2 Collecting Data :
@@ -45,7 +51,7 @@ tok.get_encoding(model_name)
 
 vocab_size = tok.n_vocab
 
-enc = tok.encode("test sample data")
+enc = tok.encode("test sample $^&~~data")
 dec = tok.decode(enc)
 
 # out :
@@ -60,8 +66,12 @@ tok = tiktoken.get_encoding("gpt2")
 
 vocab_size = 50257
 
-enc = tok.encode("sample test ^&%_#-data")
+enc = tok.encode("test sample $^&~~data")
 dec = tok.decode(enc)
+
+# out :
+# [9288, 6291, 720, 61, 5, 4907, 7890]
+# test sample $^&~~data
 ```
 A tokenizer is a tool that breaks down text into smaller units called tokens These tokens can then be processed by an LLM. The tokens can be words, characters, subwords, or other segments of text, depending on the type of LLM and the desired granularity of the text representation.
   
