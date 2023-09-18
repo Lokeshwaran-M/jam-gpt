@@ -45,12 +45,23 @@ tok.get_encoding(model_name)
 
 vocab_size = tok.n_vocab
 
-enc = tok.encode("test sample $^&~~data")
+enc = tok.encode("test sample data")
 dec = tok.decode(enc)
 
 # out :
 # [81, 66, 80, 81, 1, 80, 62, 74, 77, 73, 66, 1, 4, 60, 6, 90, 90, 65, 62, 81, 62]
 # test sample $^&~~data
+```
+```python
+import tiktoken
+
+# tokanization using tiktoken
+tok = tiktoken.get_encoding("gpt2")
+
+vocab_size = 50257
+
+enc = tok.encode("sample test ^&%_#-data")
+dec = tok.decode(enc)
 ```
 A tokenizer is a tool that breaks down text into smaller units called tokens These tokens can then be processed by an LLM. The tokens can be words, characters, subwords, or other segments of text, depending on the type of LLM and the desired granularity of the text representation.
   

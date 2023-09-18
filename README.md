@@ -2,13 +2,13 @@
 
 An Experimental Reimplementation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures and design process and create a simple and fast framework for training and fine-tuning medium-sized [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) based on the paper ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf)
 
-<a  href="https://github.com/Lokeshwaran-M/Jam-AI.git">
+<a  href="https://github.com/jam-agi">
 <div align="center" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
 <img src="https://user-images.githubusercontent.com/80915494/265230650-6b3100d4-305e-414a-b7b5-cb2399fc197a.png" width="50%" height="50%" >
 </div>
 </a>
 
-Jam-gpt is also utilized in building Core Knowledge Model of **[Jam-AI](https://github.com/Lokeshwaran-M/Jam-AI.git)** an open source AGI system for Linux machines
+Jam-gpt is also utilized in building Core Knowledge Model of **[Jam-AGI](https://github.com/jam-agi)** an open source AGI system for Linux machines
 
 ## Installation :
 
