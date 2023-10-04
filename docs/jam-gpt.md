@@ -7,7 +7,12 @@ documentation for using jam-gpt library
 
 ### Installization 
 
-install it in your local site-packages directory
+#### insatll from pip relese 
+```bash
+pip insatll jam-gpt
+```
+
+#### install it in your local site-packages directory
 
 ```bash
 pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
@@ -125,7 +130,7 @@ test_model.train()
 test_model.save_model(model_name)
 # can edit model_format 
 # model_format  = pt or pkl
-test_model.save_model(model_name,model_format )
+test_model.save_model(model_name,model_format)
 ```
 ### load model 
 ```python

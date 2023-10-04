@@ -12,7 +12,14 @@ Jam-gpt is also utilized in building Core Knowledge Model of **[Jam-AGI](https:/
 
 ## Installation :
 
-use pip and install it in your local site-packages directory
+### stable 
+> 0.0.3 this may not have fine tuning as its still under development 
+
+```bash
+pip install jam-gpt
+```
+
+### latest version
 
 ```bash
 pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
@@ -79,3 +86,4 @@ Any form of contribution is accepted here
 ## credits :
 
 kudos to [Andrej karpathy](https://github.com/karpathy) for his lectures on deep learning and [Open AI](https://github.com/openai) for GPT-2
+

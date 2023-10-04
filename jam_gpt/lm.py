@@ -244,7 +244,7 @@ class GPTLM(nn.Module):
         return idx
 
 
-class JamGPTLanguageModel(nn.Module):
+class JamGPTLM(nn.Module):
 
     def __init__(self):
         super().__init__()

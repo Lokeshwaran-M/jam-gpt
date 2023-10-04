@@ -1,4 +1,4 @@
-setuptools==67.8.0
+setuptools==68.1.2
 torch==2.0.1
 torch==2.0.0
 tiktoken
