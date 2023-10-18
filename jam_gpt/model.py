@@ -3,7 +3,7 @@ import os
 import pickle
 import torch
 from . import config
-
+from . import lm
 
 torch.manual_seed(1337)
 
@@ -12,28 +12,32 @@ class Model:
     """ class model to work on lm models """
 
     def __init__(self):
+
         [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate,
-            self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout] = config.pass_args()
+            self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout, self.model_architecture] = config.pass_args()
 
         self.model = None
+        self.model_architecture = None
 
         self.train_data = None
         self.test_data = None
 
     def set_parameters(self, args: list):
         [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate,
-            self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout] = args
+            self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout, self.model_architecture] = args
 
     def get_parameters(self):
-        return [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout]
+        return [self.vocab_size, self.batch_size, self.block_size, self.max_iters, self.eval_interval, self.learning_rate, self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout, self.model_architecture]
 
     def set_model(self, model):
+        self.model_architecture = f"lm.{model.__class__.__name__}"
         self.model = model
         self.m = self.model.to(self.device)
         # print the number of parameters in the model
         print("vocab size : ", self.vocab_size)
         print("parameters : ", sum(p.numel()
               for p in self.m.parameters())/1e6, " M")
+        config.get_args()
         return self.m
 
     def set_data(self, data):
@@ -111,22 +115,27 @@ class Model:
             print(f"given model format : {model_format} is not supported")
 
         # to save config info
-        config.set_args(self.get_parameters())
-        config.store_config(f"{model_name}/config.json")
+        config.store(model_name, self.get_parameters())
 
-    def load_model(self, model_name, model_format="bin"):
+    def load_model(self, model_name, model_format="bin",args=None):
+
+        if args:
+            self.set_parameters(args)
+        else:
+            # to load config info
+            config_data = config.retrive(model_name)
+            self.set_parameters(config_data["config_args"])
+
         # to load model
         path = f"{model_name}/{model_name}.{model_format}"
         if model_format == "bin" or model_format == "pt":
+            cls_model_architecture = eval(self.model_architecture)
+            self.set_model(cls_model_architecture())
             self.model.load_state_dict(torch.load(path))
         elif model_format == "pkl":
             with open(path, 'rb') as f:
-                self.model = pickle.load(f)
-
-        # to load config info
-        config_data = config.retrieve_config(f"{model_name}/config.json")
-        self.set_parameters(config_data["config_args"])
-        config.set_args(config_data["config_args"])
+                loaded_model = pickle.load(f)
+                self.set_model(loaded_model)
 
         self.model.eval()
         # return self.model

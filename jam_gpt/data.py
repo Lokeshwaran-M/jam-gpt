@@ -28,17 +28,36 @@ class Data:
 
     @classmethod
     def train_test_split(cls, data, split_percent: int = 90):
-        # split the data into train ans test based on split percentage
-
-        tensor_data = torch.tensor(
-            data, dtype=torch.long, device=config.device)
-        n = int((split_percent/100)*len(tensor_data))
+        """
+        split the data into train ans test based on split percentage
+        """
+         
+        tensor_data = torch.tensor(data, dtype=torch.long, device=config.device)
+        n = int((split_percent/100)*len(data))
         train_data = tensor_data[:n]
         test_data = tensor_data[n:]
 
         return [train_data, test_data]
+    
+    @classmethod
+    def formater(cls,context, prompt, Response=None):
+        """Creates a JSON object from the given context, prompt, and output.
 
+        Args:
+            context: A string containing the context
+            prompt: A string containing the prompt
+            Response: A string containing the Response
 
+        Returns:
+            A JSON object containing the context, prompt, and Response
+        """
+        
+        if Response :
+            data = f"### context:\n{context}\n\n### prompt:\n{prompt}\n\n### Response:\n{Response}\n"
+        else :
+            data = f"### context:\n{context}\n\n### prompt:\n{prompt}\n\n### Response:\n"
+        return data
+    
 def test(path):
     Data.set(path, "ghsdubvujsjbnjsnjbnsjnbljnlbnls")
     d = Data.get(path)
@@ -46,3 +65,7 @@ def test(path):
     Data.set_vocab(path, d)
     l = Data.get_vocab(path)
     print(l)
+    d = Data.data_dict("context: A string containing the context.","prompt: A string containing the prompt.","output: A string containing the output.")
+    print(d)
+
+

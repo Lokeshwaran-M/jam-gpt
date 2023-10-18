@@ -1,6 +1,6 @@
 # Jam-gpt
 
-An Experimental Reimplementation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures and design process and create a simple and fast framework for training and fine-tuning medium-sized [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) based on the paper ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf)
+An Experimental Reimplementation and reinnovation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures, design process, training, and fine-tuning the [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) model based on the paper ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf)
 
 <a  href="https://github.com/jam-agi">
 <div align="center" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
@@ -12,15 +12,15 @@ Jam-gpt is also utilized in building Core Knowledge Model of **[Jam-AGI](https:/
 
 ## Installation :
 
-### stable 
-> 0.0.3 this may not have fine tuning as its still under development 
+### unstable release
+> jam-gpt==0.0.3 may not have fine tuning as its still under development and may contain bug please report issues if any 
 
 ```bash
 pip install jam-gpt
 ```
 
 ### latest version
-
+> github pull will be clean if encountered with bugs please report issues
 ```bash
 pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
 ```
@@ -41,21 +41,16 @@ md_name = "md-name"
 tok = Tokenizer()
 tok.get_encoding(md_name)
 
-# setting parameters
-config.vocab_size = tok.n_vocab
-
 # model initilization
 model = Model()
-
-# setting GPT Language Model
-model.set_model(lm.GPTLM())
 
 # load pretrined model
 model.load_model(md_name)
 
 # Generate data using Model
 pmt = tok.encode("user prompt")
-print(tok.decode(model.generate(pmt)))
+res = tok.decode(model.generate(pmt))
+print(res)
 
 ```
 

@@ -1,5 +1,5 @@
 {
-  "config_args": [0, 16, 32, 5000, 100, 0.001, "cuda", 200, 64, 4, 4, 0.0],
+  "config_args": [101, 16, 32, 5000, 100, 0.001, "cuda", 200, 64, 4, 4, 0.0, "lm.BigramLM"],
   "config_dict": {
     "vocab_size": 101,
     "batch_size": 16,
@@ -12,6 +12,7 @@
     "n_embd": 64,
     "n_head": 4,
     "n_layer": 4,
-    "dropout": 0.0
+    "dropout": 0.0,
+    "model_architecture": "lm.BigramLM"
   }
 }

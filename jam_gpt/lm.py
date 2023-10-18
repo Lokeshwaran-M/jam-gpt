@@ -21,13 +21,14 @@ based on the Transformer architecture attention Mechanism
  n_embd,
  n_head,
  n_layer,
- dropout] = config.pass_args()
+ dropout,
+ model_architecture] = config.pass_args()
 
 
 def set_parameters(args):
-    global vocab_size, batch_size, block_size, max_iters, eval_interval, learning_rate, device, eval_iters, n_embd, n_head, n_layer, dropout
+    global vocab_size, batch_size, block_size, max_iters, eval_interval, learning_rate, device, eval_iters, n_embd, n_head, n_layer, dropout, model_architecture
     [vocab_size, batch_size, block_size, max_iters, eval_interval,
-        learning_rate, device, eval_iters, n_embd, n_head, n_layer, dropout] = args
+        learning_rate, device, eval_iters, n_embd, n_head, n_layer, dropout, model_architecture] = args
 
 
 class Head(nn.Module):
@@ -229,8 +230,7 @@ class GPTLM(nn.Module):
         for _ in range(max_new_tokens):
             # crop idx to the last block_size tokens
             # idx_cond = idx[:, -block_size:]
-            idx_cond = idx if idx.size(
-                1) <= block_size else idx[:, -block_size:]
+            idx_cond = idx if idx.size(1) <= block_size else idx[:, -block_size:]
             # get the predictions
             logits, loss = self(idx_cond)
             # focus only on the last time step
@@ -244,7 +244,7 @@ class GPTLM(nn.Module):
         return idx
 
 
-class JamGPTLM(nn.Module):
+class JamLM(nn.Module):
 
     def __init__(self):
         super().__init__()

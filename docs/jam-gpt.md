@@ -1,13 +1,13 @@
-
 # Jam-gpt
 
 documentation for using jam-gpt library
 
 ## 1 Setup :
 
-### Installization 
+### Installization
 
-#### insatll from pip relese 
+#### insatll from pip relese
+
 ```bash
 pip insatll jam-gpt
 ```
@@ -17,7 +17,9 @@ pip insatll jam-gpt
 ```bash
 pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
 ```
+
 ### Modified installization
+
 To add your modification and install in your local site-packages directory
 
 ```bash
@@ -40,7 +42,8 @@ from jam_gpt import Data
 # data collection
 data=Data.get("path-to-textfile")
 ```
-just to get data from a text data file and return as one large single string for furthere pre processing 
+
+just to get data from a text data file and return as one large single string for furthere pre processing
 
 ## 3 Tokenization :
 
@@ -63,6 +66,7 @@ dec = tok.decode(enc)
 # [81, 66, 80, 81, 1, 80, 62, 74, 77, 73, 66, 1, 4, 60, 6, 90, 90, 65, 62, 81, 62]
 # test sample $^&~~data
 ```
+
 ```python
 import tiktoken
 
@@ -78,28 +82,34 @@ dec = tok.decode(enc)
 # [9288, 6291, 720, 61, 5, 4907, 7890]
 # test sample $^&~~data
 ```
+
 A tokenizer is a tool that breaks down text into smaller units called tokens These tokens can then be processed by an LLM. The tokens can be words, characters, subwords, or other segments of text, depending on the type of LLM and the desired granularity of the text representation.
-  
 
 ## 4 configuration :
 
 ```python
 from jam_gpt import config
 
-# customizing parameter settings
+# customizing parameter settings before initializing model 
 
 args = config.pass_args()
-config.vocab_size = 96
+config.vocab_size = 50257
 
 print(args)
 print(config.pass_args())
 
 # out :
 # [0, 16, 32, 5000, 100, 0.001, 'cuda', 200, 64, 4, 4, 0.0]
-# [96, 16, 32, 5000, 100, 0.001, 'cuda', 200, 64, 4, 4, 0.0]
+# [50257, 16, 32, 5000, 100, 0.001, 'cuda', 200, 64, 4, 4, 0.0]
 
+# To store the customized config setting into model/config.json
+config.store(model_name,args)
+# To retrive the config settings from model/config.json
+config.retrive(model_name)
 ```
-## 5 Language Model ( LM , Model )  :
+The config custamization need to be done before initializing the model 
+
+## 5 Language Model ( LM , Model ) :
 
 ### Initilizing model
 
@@ -107,40 +117,56 @@ print(config.pass_args())
 from jam_gpt import  lm
 from jam_gpt import Model
 
-# model genration
-test_model = Model()
+# model instantiation
+model = Model()
 
+# setting model architecture
 # if needed Bigram Language Model
-test_model.set_model(lm.BigramLM())
+model.set_model(lm.BigramLM())
 # elif needed GPT Language Model
-test_model.set_model(lm.GPTLM())
+model.set_model(lm.GPTLM())
 ```
-### Traning 
+
+### Traning
+
 ```python
 # prepare data for training ( train , test )
-test_model.set_data(Data.train_test_split(enc_data))
+model.set_data(Data.train_test_split(enc_data))
 
 # traning
-test_model.optimize()
-test_model.train()
+model.optimize()
+model.train()
 ```
-### Saving model 
+
+### Saving model
+
 ```python
 # default bin
-test_model.save_model(model_name)
-# can edit model_format 
+model.save_model(model_name)
+# can edit model_format
 # model_format  = pt or pkl
-test_model.save_model(model_name,model_format)
+model.save_model(model_name,model_format)
 ```
-### load model 
+
+### load model
+
 ```python
-test_model.load_model(model_name)
+# retrive model parameter settings
+config.retrive(md_name)
+
+# model instantiation
+model = Model()
+
+model.load_model(model_name)
 ```
+
 ### Generate data using Model
+
 ```python
 pmt = tok.encode("user prompt")
-print(tok.decode(test_model.generate(pmt)))
+print(tok.decode(model.generate(pmt)))
 ```
+
 ## 6 Model Fine Tuning :
 
 ```python
