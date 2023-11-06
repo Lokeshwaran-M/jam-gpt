@@ -1,14 +1,15 @@
 # Jam-gpt
 
-An Experimental Reimplementation and reinnovation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures, design process, training, and fine-tuning the [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) model based on the paper ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf)
+An Experimental Reimplementation and Reinnovation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures, design process to build, training, and fine-tuning efficient [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) models 
+
+Jam-gpt is also a flagship product of **[Jam-AGI](https://github.com/jam-agi)** an open source AGI system for Linux machines. The Core Knowledge Model of [Jam-AGI](https://github.com/jam-agi) is built using Jam-gpt 
+
 
 <a  href="https://github.com/jam-agi">
 <div align="center" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
-<img src="https://user-images.githubusercontent.com/80915494/265230650-6b3100d4-305e-414a-b7b5-cb2399fc197a.png" width="50%" height="50%" >
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/80915494/280809858-85e91e19-80a6-443a-a532-eccb3de4de9d.svg" width="50%" height="50%" >
 </div>
 </a>
-
-Jam-gpt is also utilized in building Core Knowledge Model of **[Jam-AGI](https://github.com/jam-agi)** an open source AGI system for Linux machines
 
 ## Installation :
 
@@ -80,5 +81,7 @@ Any form of contribution is accepted here
 
 ## credits :
 
-kudos to [Andrej karpathy](https://github.com/karpathy) for his lectures on deep learning and [Open AI](https://github.com/openai) for GPT-2
+* kudos to [Andrej karpathy](https://github.com/karpathy) for his lectures on deep learning 
+* [Open AI](https://github.com/openai) for GPT-2
+* paper ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf)
 

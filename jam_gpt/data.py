@@ -1,3 +1,4 @@
+import json
 import torch
 from . import config
 
@@ -40,7 +41,7 @@ class Data:
         return [train_data, test_data]
     
     @classmethod
-    def formater(cls,context, prompt, Response=None):
+    def chat_formater(cls,context=None, prompt=None, response=None):
         """Creates a JSON object from the given context, prompt, and output.
 
         Args:
@@ -52,20 +53,35 @@ class Data:
             A JSON object containing the context, prompt, and Response
         """
         
-        if Response :
-            data = f"### context:\n{context}\n\n### prompt:\n{prompt}\n\n### Response:\n{Response}\n"
-        else :
-            data = f"### context:\n{context}\n\n### prompt:\n{prompt}\n\n### Response:\n"
+        if response :
+            data = f"### context:\n{context}\n\n### prompt:\n{prompt}\n\n### response:\n{response}\n [eos] \n"
+        elif context and prompt :
+            data = f"### context:\n{context}\n\n### prompt:\n{prompt}\n\n### response:\n"
+        elif not context :
+            data = f"### prompt:\n{prompt}\n\n### response:\n"
+
         return data
     
-def test(path):
-    Data.set(path, "ghsdubvujsjbnjsnjbnsjnbljnlbnls")
-    d = Data.get(path)
-    print(d)
-    Data.set_vocab(path, d)
-    l = Data.get_vocab(path)
-    print(l)
-    d = Data.data_dict("context: A string containing the context.","prompt: A string containing the prompt.","output: A string containing the output.")
-    print(d)
+    @classmethod
+    def chat_JsonToTxt(cls,path_json,path_txt):
+
+        # Read data from the JSON file
+        with open(path_json, 'r') as json_file:
+            data = json.load(json_file)
+
+        # Create a text file to save the data
+        with open(path_txt, 'w') as txt_file:
+            # Iterate through the data and write context, prompt, and response to the text file
+            for chat in data:
+                context = chat['context']
+                prompt = chat['prompt']
+                response = chat['response']
+
+                # Write to the text file
+                formated_chat = cls.chat_formater(context, prompt, response)
+                txt_file.write(formated_chat)
+                txt_file.write('\n')  # Add an empty line to separate entries
+
+
 
 

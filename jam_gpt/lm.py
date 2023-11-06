@@ -156,7 +156,7 @@ class BigramLM(nn.Module):
 
         return logits, loss
 
-    def generate(self, idx, max_new_tokens):
+    def generate(self, idx, max_new_tokens,eos_token):
         # idx is (B, T) array of indices in the current context
         for _ in range(max_new_tokens):
             # crop idx to the last block_size tokens
@@ -171,6 +171,11 @@ class BigramLM(nn.Module):
             idx_next = torch.multinomial(probs, num_samples=1)  # (B, 1)
             # append sampled index to the running sequence
             idx = torch.cat((idx, idx_next), dim=1)  # (B, T+1)
+
+            # Check if the last 4 tokens in idx match eos_token
+            if idx.size(1) >= eos_token.size(1) and torch.equal(idx[:, -eos_token.size(1):], eos_token):
+                return idx
+        
         return idx
 
 
@@ -225,7 +230,7 @@ class GPTLM(nn.Module):
 
         return logits, loss
 
-    def generate(self, idx, max_new_tokens):
+    def generate(self, idx, max_new_tokens, eos_token):
         # idx is (B, T) array of indices in the current context
         for _ in range(max_new_tokens):
             # crop idx to the last block_size tokens
@@ -241,11 +246,18 @@ class GPTLM(nn.Module):
             idx_next = torch.multinomial(probs, num_samples=1)  # (B, 1)
             # append sampled index to the running sequence
             idx = torch.cat((idx, idx_next), dim=1)  # (B, T+1)
+
+            # Check if the last 4 tokens in idx match eos_token
+            if idx.size(1) >= eos_token.size(1) and torch.equal(idx[:, -eos_token.size(1):], eos_token):
+                return idx
+            
         return idx
 
 
 class JamLM(nn.Module):
-
+    """
+    a new neural schema
+    """
     def __init__(self):
         super().__init__()
         pass

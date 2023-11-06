@@ -77,6 +77,10 @@ def store(model_name, args=pass_args()):
 
 
 def retrive(model_name):
+    """
+    args : model_name
+    return : config.json
+    """
     path = f"{model_name}/config.json"
     try:
         with open(path, "r") as config_file:

@@ -17,7 +17,6 @@ class Model:
             self.device, self.eval_iters, self.n_embd, self.n_head, self.n_layer, self.dropout, self.model_architecture] = config.pass_args()
 
         self.model = None
-        self.model_architecture = None
 
         self.train_data = None
         self.test_data = None
@@ -80,8 +79,7 @@ class Model:
             # every once in a while evaluate the loss on train and val sets
             if iter % self.eval_interval == 0:
                 losses = self.estimate_loss()
-                print(
-                    f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+                print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
 
             # sample a batch of data
             xb, yb = self.get_batch('train')
@@ -92,13 +90,16 @@ class Model:
             loss.backward()
             self.optimizer.step()
 
-    def generate(self, prompt, max_new_tokens=500):
+    def generate(self, prompt, max_new_tokens=500,eos_token=None):
         # generate from the model
         # context = torch.zeros((1, 1), dtype=torch.long, device=self.device)
         tensor_prompt = (torch.tensor(
             prompt, dtype=torch.long, device=self.device)[None, ...])
+        if eos_token:
+            tensor_eos_token = (torch.tensor(
+                eos_token, dtype=torch.long, device="cuda")[None, ...])
 
-        return self.m.generate(tensor_prompt, max_new_tokens)[0].tolist()
+        return self.m.generate(tensor_prompt, max_new_tokens,tensor_eos_token)[0].tolist()
 
     def save_model(self, model_name, model_format="bin"):
 

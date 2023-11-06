@@ -65,6 +65,9 @@ dec = tok.decode(enc)
 # out :
 # [81, 66, 80, 81, 1, 80, 62, 74, 77, 73, 66, 1, 4, 60, 6, 90, 90, 65, 62, 81, 62]
 # test sample $^&~~data
+
+#to store a pretrained model vocab to finetuned model or other model 
+tok.store_vocab("source_md-name","md-name")
 ```
 
 ```python
@@ -164,7 +167,10 @@ model.load_model(model_name)
 
 ```python
 pmt = tok.encode("user prompt")
-print(tok.decode(model.generate(pmt)))
+eos = tok.encode(" [eos] ")
+res = tok.decode(model.generate(pmt,3000,eos))
+
+print(res)
 ```
 
 ## 6 Model Fine Tuning :
