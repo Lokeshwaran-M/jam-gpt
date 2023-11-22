@@ -44,7 +44,12 @@ class Tokenizer:
     
     @classmethod
     def store_vocab(cls,smodel,md_name: str):  
-        """ source model -> destination model"""
+        """ 
+        args : 
+        smodel = source model name
+        md_name = destination model name
+        source model -> destination model
+        """
         if not os.path.exists(f"./{md_name}"):
             os.makedirs(f"./{md_name}")
         spath = f"{smodel}/vocab.json" 
