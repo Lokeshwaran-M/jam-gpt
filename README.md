@@ -2,10 +2,10 @@
 
 An Experimental Reimplementation and Reinnovation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures, design process to build, training, and fine-tuning efficient [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) models 
 
-Jam-gpt is also a flagship product of **[Jam-AGI](https://github.com/jam-agi)** an open source AGI system for Linux machines. The Core Knowledge Model of [Jam-AGI](https://github.com/jam-agi) is built using Jam-gpt 
+Jam-gpt is also a flagship product of **[OX-AI](https://github.com/ox-ai)** an open source AGI system for Linux machines. The Core Knowledge Model of [OX-AI](https://github.com/ox-ai) is built using Jam-gpt 
 
 
-<a  href="https://github.com/jam-agi">
+<a  href="https://github.com/ox-ai">
 <div align="center" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/80915494/280809858-85e91e19-80a6-443a-a532-eccb3de4de9d.svg" width="50%" height="50%" >
 </div>

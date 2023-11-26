@@ -156,7 +156,7 @@ class BigramLM(nn.Module):
 
         return logits, loss
 
-    def generate(self, idx, max_new_tokens,eos_token):
+    def generate(self, idx, max_new_tokens,eos_token=None):
         # idx is (B, T) array of indices in the current context
         for _ in range(max_new_tokens):
             # crop idx to the last block_size tokens
@@ -173,8 +173,9 @@ class BigramLM(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)  # (B, T+1)
 
             # Check if the last 4 tokens in idx match eos_token
-            if idx.size(1) >= eos_token.size(1) and torch.equal(idx[:, -eos_token.size(1):], eos_token):
-                return idx
+            if eos_token :
+                if idx.size(1) >= eos_token.size(1) and torch.equal(idx[:, -eos_token.size(1):], eos_token):
+                    return idx
         
         return idx
 
@@ -230,7 +231,7 @@ class GPTLM(nn.Module):
 
         return logits, loss
 
-    def generate(self, idx, max_new_tokens, eos_token):
+    def generate(self, idx, max_new_tokens, eos_token=None):
         # idx is (B, T) array of indices in the current context
         for _ in range(max_new_tokens):
             # crop idx to the last block_size tokens
@@ -248,8 +249,9 @@ class GPTLM(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)  # (B, T+1)
 
             # Check if the last 4 tokens in idx match eos_token
-            if idx.size(1) >= eos_token.size(1) and torch.equal(idx[:, -eos_token.size(1):], eos_token):
-                return idx
+            if eos_token :
+                if idx.size(1) >= eos_token.size(1) and torch.equal(idx[:, -eos_token.size(1):], eos_token):
+                    return idx
             
         return idx
 
