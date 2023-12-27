@@ -142,6 +142,8 @@ class Model:
             tensor_eos_token = torch.tensor(eos_token, dtype=torch.long, device="cuda")[
                 None, ...
             ]
+        else :
+            tensor_eos_token = None
 
         return self.m.generate(tensor_prompt, max_new_tokens, tensor_eos_token)[
             0

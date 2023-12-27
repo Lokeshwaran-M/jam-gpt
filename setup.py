@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='jam-gpt',
-    version='0.0.3',
+    version='0.0.4',
     description='A reimplementation of large language model (LLM) architectures designed for research and development processes',
     author='Lokeshwaran M',
     author_email='lokeshwaran.m23072003@gmail.com',
