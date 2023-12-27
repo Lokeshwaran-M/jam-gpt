@@ -13,8 +13,8 @@ Jam-gpt is also a flagship product of **[OX-AI](https://github.com/ox-ai)** an o
 
 ## Installation :
 
-### unstable release
-> jam-gpt==0.0.3 may not have fine tuning as its still under development and may contain bug please report issues if any 
+### stable release
+> jam-gpt==0.0.4 may not have fine tuning as its still under development and may contain bug please report issues if any 
 
 ```bash
 pip install jam-gpt
