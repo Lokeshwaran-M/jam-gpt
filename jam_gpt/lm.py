@@ -186,7 +186,7 @@ class BigramLM(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)  # (B, T+1)
 
             # Check if the last tokens in idx match eos_token
-            if eos_token:
+            if eos_token!=None:
                 if idx.size(1) >= eos_token.size(1) and torch.equal(
                     idx[:, -eos_token.size(1) :], eos_token
                 ):
@@ -264,7 +264,7 @@ class GPTLM(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)  # (B, T+1)
 
             # Check if the last tokens in idx match eos_token
-            if eos_token:
+            if eos_token!=None:
                 if idx.size(1) >= eos_token.size(1) and torch.equal(
                     idx[:, -eos_token.size(1) :], eos_token
                 ):

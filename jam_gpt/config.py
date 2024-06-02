@@ -85,6 +85,8 @@ def retrive(model_name):
     try:
         with open(path, "r") as config_file:
             config_data = json.load(config_file)
+            config_data["config_args"][6] = "cuda" if torch.cuda.is_available() else "cpu"
+            config_data["config_dict"]["device"] = "cuda" if torch.cuda.is_available() else "cpu"
             set_args(config_data["config_args"])
         return config_data
     except FileNotFoundError:

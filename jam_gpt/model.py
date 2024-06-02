@@ -139,7 +139,7 @@ class Model:
             None, ...
         ]
         if eos_token:
-            tensor_eos_token = torch.tensor(eos_token, dtype=torch.long, device="cuda")[
+            tensor_eos_token = torch.tensor(eos_token, dtype=torch.long, device=self.device)[
                 None, ...
             ]
         else :
@@ -178,7 +178,7 @@ class Model:
         if model_format == "bin" or model_format == "pt":
             cls_model_architecture = eval(self.model_architecture)
             self.set_model(cls_model_architecture())
-            self.model.load_state_dict(torch.load(path))
+            self.model.load_state_dict(torch.load(path,map_location=torch.device(config_data["config_dict"]["device"])))
         elif model_format == "pkl":
             with open(path, "rb") as f:
                 loaded_model = pickle.load(f)
