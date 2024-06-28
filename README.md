@@ -36,7 +36,7 @@ pip install jam-gpt
 
 ## Usage :
 
-Refere [Docs](./docs/jam-gpt.md) or [test-bgLM.ipynb](test-bgLM.ipynb) and [test-gptLM.ipynb](test-gptLM.ipynb) for code examples
+Refere [Docs](./docs/jam-gpt.md) and [test-gptLM.ipynb](test-gptLM.ipynb) for code examples
 
 ```python
 
