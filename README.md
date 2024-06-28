@@ -1,8 +1,14 @@
 # Jam-gpt
 
-An Experimental Reimplementation and Reinnovation of [large language model (LLM)](https://en.wikipedia.org/wiki/Large_language_model#:~:text=References-,Large%20language%20model,-19%20languages) for research and development of it architectures, design process to build, training, and fine-tuning efficient [Generative Pretrained Transformers (GPT)](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer#:~:text=Generative%20pre%2Dtrained,20%20languages) models 
+## about :
 
-Jam-gpt is also a flagship product of **[OX-AI](https://github.com/ox-ai)** an open source AGI system for Linux machines. The Core Knowledge Model of [OX-AI](https://github.com/ox-ai) is built using Jam-gpt 
+> note : its a simple toy llm model builder framework to play around llm models and understand its working principles 
+
+its not a llm model but you can put ur data and train it to build llm models 
+
+An Experimental implementation of **language model (LLM)** architecture for research and development of it architectures, design process to build, training, and fine-tuning efficient **Generative Pretrained Transformers (GPT)** models 
+
+for more ai related tools and framework look into **[OX-AI](https://github.com/ox-ai)** an open source AI project 
 
 
 <a  href="https://github.com/ox-ai">
@@ -13,6 +19,12 @@ Jam-gpt is also a flagship product of **[OX-AI](https://github.com/ox-ai)** an o
 
 ## Installation :
 
+### latest version
+> github pull will be clean if encountered with bugs please report issues
+```bash
+pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
+```
+
 ### stable release
 > jam-gpt==0.0.4 may not have fine tuning as its still under development and may contain bug please report issues if any 
 
@@ -20,11 +32,7 @@ Jam-gpt is also a flagship product of **[OX-AI](https://github.com/ox-ai)** an o
 pip install jam-gpt
 ```
 
-### latest version
-> github pull will be clean if encountered with bugs please report issues
-```bash
-pip install git+https://github.com/Lokeshwaran-M/jam-gpt.git
-```
+
 
 ## Usage :
 

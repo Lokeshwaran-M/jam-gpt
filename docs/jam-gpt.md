@@ -124,9 +124,8 @@ from jam_gpt import Model
 model = Model()
 
 # setting model architecture
-# if needed Bigram Language Model
-model.set_model(lm.BigramLM())
-# elif needed GPT Language Model
+
+# GPT Language Model
 model.set_model(lm.GPTLM())
 ```
 

@@ -9,3 +9,9 @@ __pycache__/
 *.pyc
 .pypirc
 dist/
+
+
+# datasets
+
+
+*.egg-info/
