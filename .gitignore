@@ -14,4 +14,4 @@ dist/
 # datasets
 
 
-# *.egg-info/
+*.egg-info/
