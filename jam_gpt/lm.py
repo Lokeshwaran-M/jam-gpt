@@ -1,3 +1,8 @@
+"""
+B0rrowed form Andreg karpathy : karpathy/nanoGPT
+https://github.com/karpathy/nanoGPT/blob/master/model.py
+"""
+
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
